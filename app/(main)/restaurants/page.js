@@ -8,10 +8,14 @@ import Link from 'next/link';
 
 export default function RestaurantsPage() {
     const { user } = useAuth();
-    const { restaurants, isLoading } = useData();
+    const { restaurants, isLoading,fetchRestaurants } = useData();
 
     if (!user) return null;
 
+
+    useEffect(() => {
+        fetchRestaurants();
+    }, []);
    
     const filteredRestaurants = user.role === 'ADMIN'
         ? restaurants

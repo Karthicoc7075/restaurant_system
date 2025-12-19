@@ -90,8 +90,8 @@ export function DataProvider({ children }) {
     const [state, dispatch] = useReducer(dataReducer, initialState);
 
  
-    useEffect(() => {
-        const fetchData = async () => {
+   
+        const fetchRestaurants = async () => {
             dispatch({ type: 'SET_LOADING', payload: true });
             try {
                
@@ -111,8 +111,8 @@ export function DataProvider({ children }) {
                 dispatch({ type: 'SET_ERROR', payload: error.message });
             }
         };
-        fetchData();
-    }, []);
+       
+    
 
     const addToCart = (item, quantity = 1) => {
         dispatch({ type: 'CART_ADD_ITEM', payload: { item, quantity } });
@@ -295,6 +295,7 @@ export function DataProvider({ children }) {
             fetchPaymentMethods,
             addPaymentMethod,
             deletePaymentMethod,
+            fetchRestaurants
         }}>
             {children}
         </DataContext.Provider>
